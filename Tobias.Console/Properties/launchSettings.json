@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Tobias.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": " -command build -origin $(ProjectDir)\\..\\Tobias.DatabaseMgmt\\Db\\ -origin $(ProjectDir)\\..\\Tobias.DatabaseMgmt\\Script\\ -filetype mdf -filetype ldf -filetype sql -destination .\\Db"
+    }
+  }
+}

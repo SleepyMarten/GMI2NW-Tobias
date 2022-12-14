@@ -1,0 +1,8 @@
+﻿
+
+CREATE TABLE [dbo].[DONOR] (
+    [PK]        UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
+    [NAME]      NVARCHAR (100)   NOT NULL,
+    [SHOESIZE]  INT              NOT NULL,
+    PRIMARY KEY CLUSTERED ([PK] ASC)
+);

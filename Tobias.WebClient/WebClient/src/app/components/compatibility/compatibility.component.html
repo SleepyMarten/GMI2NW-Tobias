@@ -1,0 +1,67 @@
+<h2>Blood Compatibility</h2>
+
+<table class='table table-striped'>
+    <thead>
+        <tr>
+            <th>Donors</th>
+            <th>Recipients</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <!-- Show while still loading -->
+                <a *ngIf="pageStateDonors == PageStates.Fetching"><em>Loading...</em></a>
+
+                <!-- Show when data has been loaded -->
+                <table class='table table-striped' aria-labelledby="tableLabel"
+                    *ngIf="pageStateDonors == PageStates.FetchedOrNew">
+                    <thead>
+                        <tr>
+                            <th>Selected</th>
+                            <th>Name</th>
+                            <th>Birth Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let donor of donors">
+                            <td><a *ngIf="selectedDonorGuid == donor.guid"><b>X</b></a></td>
+                            <td>{{ donor.firstName }} {{ donor.lastName}}</td>
+                            <td>{{ donor.socialSecurityNumber }}</td>
+                            <td><button name="SelectDonor" (click)="ActionSelectDonor(donor.guid)">Select</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <!-- Show while still loading -->
+                <a *ngIf="pageStateRecipients == PageStates.Fetching"><em>Loading...</em></a>
+
+                <!-- Show when data has been loaded -->
+                <table class='table table-striped' aria-labelledby="tableLabel"
+                    *ngIf="pageStateRecipients == PageStates.FetchedOrNew">
+                    <thead>
+                        <tr>
+                            <th>Selected</th>
+                            <th>Name</th>
+                            <th>Birth Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let recipient of recipients">
+                            <td><a *ngIf="selectedRecipientGuid == recipient.guid"><b>X</b></a></td>
+                            <td>{{ recipient.firstName }} {{ recipient.lastName}}</td>
+                            <td>{{ recipient.socialSecurityNumber }}</td>
+                            <td><button name="SelectRecipient" (click)="ActionSelectRecipient(recipient.guid)">Select</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button *ngIf="(selectedDonorGuid != '' && selectedRecipientGuid != '')"
+    (click)="ActionFetchCompatibilityResult()">Calculate Compatibility</button>
+<p *ngIf="pageStateCompatibilityResult == PageStates.FetchedOrNew"><b>Compatibility result: {{ compatibilityResult }}</b></p>

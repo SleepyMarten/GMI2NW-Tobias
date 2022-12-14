@@ -1,0 +1,15 @@
+﻿VARIOUS USEFUL ARGUMENTS
+========================
+
+
+Build database, copy mdf and sql files from Tobias.DatabaseMgmt project
+-c build -o ..\..\..\..\Tobias.DatabaseMgmt\bin\Debug\net5.0\Db\ -O ..\..\..\..\Tobias.DatabaseMgmt\bin\Debug\net5.0\Script\ -f mdf -F ldf -f sql --destination .\
+
+Generate DNA string
+-c generate -f .\dna\DNA.data
+
+Generate 14 DNA strings
+-c generate -n 14 -d .\dna -f DNA*.data
+
+Validate DNA string
+-c validate -o .\dna -f DNA*.data

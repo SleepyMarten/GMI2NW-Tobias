@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Selenium.WebDriver" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tobias.Core.DNA.Util\Tobias.Core.DNA.Util.csproj" />
+    <ProjectReference Include="..\Tobias.Core.DNA\Tobias.Core.DNA.csproj" />
+    <ProjectReference Include="..\Tobias.Core\Tobias.Core.csproj" />
+  </ItemGroup>
+
+</Project>

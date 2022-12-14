@@ -1,0 +1,28 @@
+<h2>Stem Cell Donors</h2>
+
+<!-- Show while still loading -->
+<a *ngIf="PageState == PageStates.Fetching"><em>Loading...</em></a>
+
+<!-- Show when data has been loaded -->
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="PageState == PageStates.FetchedOrNew">
+    <thead>
+        <tr>
+            <th>SSN</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let donor of donors">
+            <td>{{ donor.socialSecurityNumber }}</td>
+            <td>{{ donor.firstName }}</td>
+            <td>{{ donor.lastName }}</td>
+            <td><button name="Open" (click)="ActionOpen(donor.guid)">Open</button></td>
+            <td><button name="Edit" (click)="ActionEdit(donor.guid)">Edit</button></td>
+            <td><button name="Delete" (click)="ActionDelete(donor.guid)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<td><button name="Add" (click)="ActionAdd()">Add...</button></td>

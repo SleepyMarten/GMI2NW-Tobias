@@ -1,0 +1,71 @@
+<h2>Stem Cell Donor</h2>
+
+<!-- Show while still loading -->
+<a *ngIf="PageState == PageStates.Fetching"><em>Loading...</em></a>
+
+<!-- Show if deleting -->
+<a *ngIf="PageState == PageStates.Deleting"><em>Deleting...</em></a>
+
+<!-- Show when data has been loaded -->
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="PageState == PageStates.FetchedOrNew">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Identifier:</td>
+            <td>{{ donor.guid }}</td>
+        </tr>
+        <tr>
+            <td>First Name:</td>
+            <!-- If editable -->
+            <td *ngIf="ItemStateGUI === ItemStatesGUI.Editable">
+                <input [(ngModel)]="donor.firstName">
+            </td>
+            <!-- If not editable -->
+            <td *ngIf="ItemStateGUI != ItemStatesGUI.Editable">{{ donor.firstName }}</td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <!-- If editable -->
+            <td *ngIf="ItemStateGUI === ItemStatesGUI.Editable">
+                <input [(ngModel)]="donor.lastName">
+            </td>
+            <!-- If not editable -->
+            <td *ngIf="ItemStateGUI != ItemStatesGUI.Editable">{{ donor.lastName }}</td>
+        </tr>
+        <tr>
+            <td>Social Security Number:</td>
+            <!-- If editable -->
+            <td *ngIf="ItemStateGUI === ItemStatesGUI.Editable">
+                <input [(ngModel)]="donor.socialSecurityNumber">
+            </td>
+            <!-- If not editable -->
+            <td *ngIf="ItemStateGUI != ItemStatesGUI.Editable">{{ donor.socialSecurityNumber }}</td>
+        </tr>
+        <tr>
+            <td>Rh Blood Group:</td>
+            <!-- If editable -->
+            <td *ngIf="ItemStateGUI === ItemStatesGUI.Editable">
+                <input [(ngModel)]="donor.bloodGroupRh">
+            </td>
+            <!-- If not editable -->
+            <td *ngIf="ItemStateGUI != ItemStatesGUI.Editable">{{ donor.bloodGroupRh }}</td>
+        </tr>
+        <tr>
+            <td>AB0 Blood Group:</td>
+            <!-- If editable -->
+            <td *ngIf="ItemStateGUI === ItemStatesGUI.Editable">
+                <input [(ngModel)]="donor.bloodGroupAB0">
+            </td>
+            <!-- If not editable -->
+            <td *ngIf="ItemStateGUI != ItemStatesGUI.Editable">{{ donor.bloodGroupAB0 }}</td>
+        </tr>
+    </tbody>
+</table>
+<button *ngIf="PageState == PageStates.FetchedOrNew && ItemStateGUI != ItemStatesGUI.Editable" (click)="ActionEdit()">Edit</button>
+<button *ngIf="ItemStateGUI == ItemStatesGUI.Editable && ItemStateDb == ItemStatesDb.Unsaved" (click)="ActionSave()">Create</button>
+<button *ngIf="ItemStateGUI == ItemStatesGUI.Editable && ItemStateDb == ItemStatesDb.Stored" (click)="ActionSave()">Save changes</button>
